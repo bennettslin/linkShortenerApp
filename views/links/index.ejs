@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+<div class="col-sm-8 col-sm-offset-2">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Hash</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% links.forEach(function(link) { %>
+    <tr>
+      <td><a href="/<%= link.hash %>"><%= link.url %></a></td>
+      <td><a href="/links/<%= link.hash %>"><%= link.hash %></a></td>
+      <td><%= link.count %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+</div>
+
+<% include ../partials/footer %>
