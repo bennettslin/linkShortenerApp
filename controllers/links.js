@@ -31,7 +31,7 @@ router.get("/", function(req, res) {
 router.post("/", function(req, res) {
   db.link.create({url:req.body.url}).then(function(createdLink) {
     var hash = hashids.encode(createdLink.id);
-    createdLink.hash = req.headers.host + '/' + hash;
+    createdLink.hash = hash;
     createdLink.count = 0;
     createdLink.save();
     res.render("links/show", {hash:hash, count:createdLink.count, host:req.headers.host});
@@ -43,7 +43,7 @@ router.post("/", function(req, res) {
 router.get("/:id", function(req, res) {
   var link_id = parseInt(hashids.decode(req.params.id));
   db.link.find(link_id).then(function(link) {
-    res.render("links/show", {hash:req.params.id, count:link.count, host:""});
+    res.render("links/show", {hash:req.params.id, count:link.count, host:req.headers.host});
   });
 });
 
