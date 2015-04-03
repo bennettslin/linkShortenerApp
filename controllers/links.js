@@ -29,7 +29,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
-  db.link.create({url:req.headers.host + '/' + req.body.url}).then(function(createdLink) {
+  db.link.create({url:req.body.url}).then(function(createdLink) {
     var hash = hashids.encode(createdLink.id);
     createdLink.hash = hash;
     createdLink.count = 0;
