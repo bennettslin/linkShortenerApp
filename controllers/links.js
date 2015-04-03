@@ -31,10 +31,10 @@ router.get("/", function(req, res) {
 router.post("/", function(req, res) {
   db.link.create({url:req.body.url}).then(function(createdLink) {
     var hash = hashids.encode(createdLink.id);
-    createdLink.hash = hash;
+    createdLink.hash = req.headers.host + '/' + hash;
     createdLink.count = 0;
     createdLink.save();
-    res.render("links/show", {hash:req.headers.host + '/' + hash, count:createdLink.count});
+    res.render("links/show", {hash:hash, count:createdLink.count});
   }).catch(function(error) {
     console.log(error);
   });
