@@ -19,8 +19,6 @@ if(config.use_env_variable){
 }
 //////////////////////////////
 
-console.log(config);
-
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
 var db        = {};
 
