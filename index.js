@@ -24,7 +24,7 @@ app.get("/:hash", function(req, res) {
   db.link.find(link_id).then(function(accessedLink) {
     accessedLink.count = accessedLink.count + 1;
     accessedLink.save();
-    res.redirect(req.headers.host + '/' + accessedLink.url);
+    res.redirect('http://' + accessedLink.url);
   }).catch(function(error) {
     console.log(error);
   });
